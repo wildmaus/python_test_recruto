@@ -2,6 +2,7 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('rand/', rand_view, name="rand"),
+    path('rand/', get_rand, name="rand"),
+    path('login/', login_view, name="login"),
     path('register/', register_view, name="register"),
 ]
