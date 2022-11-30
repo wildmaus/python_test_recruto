@@ -30,6 +30,7 @@ def register_view(request):
         form = NewUserForm(request.POST)
         if form.is_valid():
             user = form.save()
+            login(request, user)
             return redirect("rand")
     form = NewUserForm()
     return render(request=request, template_name="randgenerator/register.html", context={"register_form": form})
