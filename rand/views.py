@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate
 import random
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse
@@ -8,6 +8,7 @@ from django.shortcuts import render
 from .forms import NewUserForm
 
 
+@csrf_exempt
 def rand_view(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
@@ -21,6 +22,7 @@ def rand_view(request):
     return render(request=request, template_name="randgenerator/login.html", context={"login_form": form})
 
 
+@csrf_exempt
 def register_view(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
